@@ -11,26 +11,27 @@
 import unittest
 import requests
 from day06.review.review_unittest.common.readData import ReadData
+from ddt import ddt,data,unpack
+from day06.review.review_unittest.common.ConfigHttp import ConfigHttp
+from day06.review.review_unittest.common.PublicAssertion import PublicAssertion
+from  day06.review.review_unittest.common.log import logger
 #     1、获取测试数据
 readdata = ReadData()
 datalist = readdata.readExcel()
 print(datalist)
 #     2、创建一个测试用例类
+@ddt
 class TestCase(unittest.TestCase):
     #         2.1 创建一个测试用例方法
-    def test_case(self):
-        #         2.2 获取测试数据内，请求所需要的重要字段
-        url = datalist[0]["interfaceUrl"]
-        method = datalist[0]["method"]
-        value = datalist[0]["value"]
-        expect = datalist[0]["expect"]
+    @data(*datalist)
+    @unpack
+    def test_case(self,**kwargs):
         #         2.3 进行接口请求
-        if method.lower() == 'get':
-            res = requests.get(url=url,params=eval(value))
-        elif method.lower() == 'post':
-            res = requests.post(url=url,data=eval(value))
+        logger.debug(kwargs)
+        ch = ConfigHttp(kwargs)
+        res = ch.confighttp()
         #         2.4 进行断言
-        print(res.text)
-        self.assertEqual(res.json()["errorCode"],eval(expect),'测试不通过')
+        pa = PublicAssertion(kwargs['expect'],res)
+        pa.publicAssertion()
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)
