@@ -1,0 +1,4 @@
+日志:Test-级别:DEBUG-时间2022-08-22 22:52:03,567-模块log.py-第49行:这是debug
+日志:Test-级别:DEBUG-时间2022-08-22 22:54:01,858-模块TestCase.py-第30行:{'id': '1', 'interfaceUrl': 'https://www.wanandroid.com/user/login', 'name': 'login', 'method': 'post', 'value': "{'username':'liangchao','password':'123456'}", 'header': '{}', 'expect': "{'errorCode':'0','username':'liangchao'}"}
+日志:Test-级别:DEBUG-时间2022-08-22 22:54:02,574-模块TestCase.py-第30行:{'id': '2', 'interfaceUrl': 'https://www.wanandroid.com/user/register', 'name': 'register', 'method': 'post', 'value': "{'username':'liangchao03','password':'123456','repassword':'123456'}", 'header': '{}', 'expect': "{'errorCode':'0'}"}
+日志:Test-级别:DEBUG-时间2022-08-22 22:54:02,784-模块TestCase.py-第30行:{'id': '3', 'interfaceUrl': 'https://www.wanandroid.com/user/logout/json', 'name': 'logout', 'method': 'get', 'value': "{'username':'liangchao'}", 'header': '{}', 'expect': "{'errorCode':'0'}"}
